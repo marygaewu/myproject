@@ -24,7 +24,7 @@ function TransCript() {
     <div>
       <embed
         type="application/pdf"
-        src={hey}
+        src={url}
         style={{
           width: "50%",
           height: "100%",

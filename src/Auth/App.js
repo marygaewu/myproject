@@ -13,12 +13,12 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   
   const setToAdmin= function(e){
-    console.log(isAdmin)
     setIsAdmin(e);
+    
   }
   
 useEffect(()=>{
-console.log("use effect fired")
+console.log("use effect fired" + isAdmin)
 }, [isAdmin])
 
   return (
