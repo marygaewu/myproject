@@ -5,7 +5,7 @@ import { FaBook, FaSchool, FaShareSquare } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
 import { ImProfile } from "react-icons/im";
-import Level from "./Level";
+import Level from "../studentDashboard/Level";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../Auth/context/userContext";
 import db from "../firebase";
