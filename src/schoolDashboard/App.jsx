@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "../index.css";
 
-function App() {
+function AdminRoutes() {
   return (
     <Router>
       <div>
@@ -19,4 +19,4 @@ function App() {
     </Router>
   );
 }
-export default App;
+export default AdminRoutes;

@@ -46,11 +46,7 @@ function SideBar() {
               <h3>My Profile</h3>
             </Li>
           </Link>
-          <Li>
-            <FaSchool />
-            <h3>My Semester</h3>
-          </Li>
-          <Link to="/trans">
+          <Link to="/mytrans">
             <Li>
               <FaBook />
               <h3>My Transcript</h3>
@@ -70,7 +66,7 @@ function SideBar() {
 
         <ContactContainer>
           <span>Having troubles?</span>
-          <a href="/">Contact us</a>
+          <a href="#">Contact us</a>
         </ContactContainer>
       </LinksContainer>
     </Container>
