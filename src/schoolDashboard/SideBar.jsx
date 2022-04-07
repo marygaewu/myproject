@@ -1,36 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MdDashboard } from "react-icons/md";
 import { FaBook, FaSchool, FaShareSquare } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-
-import { ImProfile } from "react-icons/im";
-import Level from "../studentDashboard/Level";
-import { Link } from "react-router-dom";
 import { useUserContext } from "../Auth/context/userContext";
-import db from "../firebase";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { ImProfile } from "react-icons/im";
 
 function SideBar() {
   const { user, logoutUser } = useUserContext();
-  let email = user.email;
-  const colRef = collection(db, "StudentInfo");
-  const q = query(colRef, where("email", "==", email));
-  let [fname, setfname] = useState("");
-
-  onSnapshot(q, async (snapshot) => {
-    let info = await snapshot.docs.map((doc) => {
-      console.log(doc.get("fname") + " " + doc.get("lname"));
-      setfname(doc.get("fname") + " " + doc.get("lname"));
-      console.log(fname);
-    });
-  });
   return (
     <Container>
       <ProfileContainer>
-        <Avatar src="./noProfile.jpg" />
-        <Name>{fname}</Name>
-        <Level content={user.displayName} />
+        <Avatar src="./Images/frontImg.jpg" />
+        <Name>Administrator</Name>
       </ProfileContainer>
       <LinksContainer>
         <Links>
@@ -40,22 +23,10 @@ function SideBar() {
               <h3>Dashboard</h3>
             </Li>
           </Link>
-          <Link to="/profile">
+          <Link to="trans">
             <Li>
               <ImProfile />
-              <h3>My Profile</h3>
-            </Li>
-          </Link>
-          <Link to="/mytrans">
-            <Li>
-              <FaBook />
-              <h3>My Transcript</h3>
-            </Li>
-          </Link>
-          <Link to="">
-            <Li>
-              <FaShareSquare />
-              <h3>Share</h3>
+              <h3>Students</h3>
             </Li>
           </Link>
           <Li>
@@ -125,7 +96,6 @@ const Li = styled.li`
   gap: 1rem;
   color: #e4e4e4;
   cursor: pointer;
-
   h3 {
     font-weight: 300;
   }
