@@ -24,7 +24,7 @@ const Signin = () => {
 
   return (
     <div className="form">
-      <h2> Login </h2>
+      <h2> Login as Student </h2>
       <form onSubmit={onSubmit}>
         <input
           className="input"
