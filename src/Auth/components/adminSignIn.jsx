@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useUserContext } from "../context/userContext";
 import Table from "../../Table";
-import Auth from "./auth";
+// import Auth from "./auth";
 
 const AdminSignin = () => {
   const emailRef = useRef();
@@ -13,12 +13,12 @@ const AdminSignin = () => {
     const email = emailRef.current.value;
     const password = psdRef.current.value;
     if (email && password) {
-      if (email === "admin@gmail.com" && password === "admin1234") {
-        console.log(email + " " + password);
+      //if (email === "admin@gmail.com" && password === "admin1234") {
+      //  console.log(email + " " + password);
         signInUser(email, password);
-      } else {
-        console.log("not an Admin");
-      }
+     // } else {
+     //   console.log("not an Admin");
+     // }
     }
     //signInUser(email, password);
   };
