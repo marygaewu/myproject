@@ -6,6 +6,7 @@ import GetAppIcon from "@material-ui/icons/GetApp";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import db, { storage } from "./firebase";
+import ProgressModal from "./schoolDashboard/ProgressModal";
 import {
   collection,
   addDoc,
@@ -36,6 +37,7 @@ let path = "";
 function Table() {
   const [tableData, setTableData] = useState([{ fname: "Loading....." }]);
   const [progress, setProgress] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -54,37 +56,6 @@ function Table() {
     const docRef = doc(db, "StudentInfo", id);
     deleteDoc(docRef);
   };
-
-  // const uploadFiles = (file) => {
-  //   if (!file) return;
-  //   const storageRef = ref(storage, `/files/${file.name}`);
-  //   const uploadTask = uploadBytesResumable(storageRef, file);
-
-  //   uploadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       const prog = Math.round(
-  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //       );
-  //       setProgress(prog);
-  //     },
-  //     (err) => console.log(err),
-
-  //     // () => {
-  //     //   getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-  //     //     console.log(typeof url);
-
-  //     //     Url = url;
-  //     //     console.log(url);
-  //     //   });
-  //     //}
-
-  //     async () => {
-  //       path = await getDownloadURL(uploadTask.snapshot.ref);
-  //       console.log(path);
-  //     }
-  //   );
-  // };
 
   const columns = [
     {
@@ -162,9 +133,10 @@ function Table() {
   ];
 
   return (
-    <div className="App">
+    <div>
       {/* <h3>Uploaded {progress} %</h3> */}
       <MaterialTable
+        style={{ position: "absolute", width: "100%" }}
         columns={columns}
         data={tableData}
         editable={{
@@ -212,7 +184,6 @@ function Table() {
               //   <input type="file" hidden />
               // </Button>
               <div>
-                <CircularProgress variant="determinate" value={progress} />
                 <GetAppIcon />
               </div>
             ),
@@ -231,6 +202,7 @@ function Table() {
                       (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     );
                     setProgress(prog);
+                    setModalOpen(true);
                   },
                   (err) => console.log(err),
 
@@ -299,6 +271,14 @@ function Table() {
           ResetSearch: () => <Clear />,
         }}
       />
+
+      {modalOpen && (
+        <ProgressModal
+          progress={progress}
+          setOpenModal={setModalOpen}
+          callModal={() => setModalOpen(false)}
+        />
+      )}
     </div>
   );
 }

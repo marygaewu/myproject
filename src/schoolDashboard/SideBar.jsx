@@ -7,12 +7,12 @@ import { FiLogOut } from "react-icons/fi";
 import { useUserContext } from "../Auth/context/userContext";
 import { ImProfile } from "react-icons/im";
 
-function SideBar() {
+function SideBar(props) {
   const { user, logoutUser } = useUserContext();
   return (
     <Container>
       <ProfileContainer>
-        <Avatar src="./Images/frontImg.jpg" />
+        <Avatar src="./noProfile.jpg" />
         <Name>Administrator</Name>
       </ProfileContainer>
       <LinksContainer>
@@ -31,7 +31,7 @@ function SideBar() {
           </Link>
           <Li>
             <FiLogOut />
-            <h3 onClick={logoutUser}>Logout</h3>
+            <h3 onClick={() => props.callModalFun()}>Logout</h3>
           </Li>
         </Links>
 

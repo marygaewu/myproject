@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { MdDashboard } from "react-icons/md";
 import { FaBook, FaSchool, FaShareSquare } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
-
+import Modal from "./Modal";
 import { ImProfile } from "react-icons/im";
 import Level from "./Level";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../Auth/context/userContext";
 import db from "../firebase";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
+//import { Open } from "./StudentApp";
 
-function SideBar() {
+function SideBar(props) {
+  const [modalOpen, setModalOpen] = useState(false);
   const { user, logoutUser } = useUserContext();
   let email = user.email;
   const colRef = collection(db, "StudentInfo");
   const q = query(colRef, where("email", "==", email));
   let [fname, setfname] = useState("");
+
+  const ModalRef = useRef();
 
   onSnapshot(q, async (snapshot) => {
     let info = await snapshot.docs.map((doc) => {
@@ -25,6 +29,9 @@ function SideBar() {
       console.log(fname);
     });
   });
+  // document.querySelector(".openModal").addEventListener("click", () => {
+  //   console.log("im fine");
+  // });
   return (
     <Container>
       <ProfileContainer>
@@ -60,7 +67,9 @@ function SideBar() {
           </Link>
           <Li>
             <FiLogOut />
-            <h3 onClick={logoutUser}>Logout</h3>
+            <h3 className="openModal" onClick={() => props.callModalFun()}>
+              Logout
+            </h3>
           </Li>
         </Links>
 
@@ -69,6 +78,7 @@ function SideBar() {
           <a href="#">Contact us</a>
         </ContactContainer>
       </LinksContainer>
+      {/* {modalOpen && <Modal setOpenModal={setModalOpen} />} */}
     </Container>
   );
 }

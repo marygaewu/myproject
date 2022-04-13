@@ -15,10 +15,10 @@ const AdminSignin = () => {
     if (email && password) {
       //if (email === "admin@gmail.com" && password === "admin1234") {
       //  console.log(email + " " + password);
-        signInUser(email, password);
-     // } else {
-     //   console.log("not an Admin");
-     // }
+      signInUser(email, password);
+      // } else {
+      //   console.log("not an Admin");
+      // }
     }
     //signInUser(email, password);
   };

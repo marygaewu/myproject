@@ -9,8 +9,10 @@ function MainContent() {
   return (
     <Container>
       <NavBar />
+
       <SubContainer>
         <Transcript />
+
         <TranscriptPreview />
         <TransCript />
       </SubContainer>

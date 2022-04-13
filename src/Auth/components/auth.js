@@ -13,12 +13,12 @@ const Auth = (props) => {
   return (
     <div className="flex-container">
       <div className="container">
-        { (props.isAdmin ) ? null:!index ? <Signin /> : <Signup />}
+        {props.isAdmin ? null : !index ? <Signin /> : <Signup />}
+        {props.isAdmin ? <AdminSignin /> : null}
 
         <p onClick={toggleIndex}>
           {!index ? "New user? Click here " : "Already have an acount?"}
         </p>
-        {(props.isAdmin ) ? <AdminSignin /> : null}
 
         <span style={{ display: "flex", cursor: "pointer" }}>
           <p
@@ -31,11 +31,14 @@ const Auth = (props) => {
             Login as admin
           </p>
           <p>| |</p>
-          <p onClick={() => {
-            props.setToAdmin(false)
-            setShow(false); 
-          }}>
-            Login as student</p>
+          <p
+            onClick={() => {
+              props.setToAdmin(false);
+              setShow(false);
+            }}
+          >
+            Login as student
+          </p>
         </span>
       </div>
     </div>

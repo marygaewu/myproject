@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "./SideBar";
 import styled from "styled-components";
 import "./styles.css";
 import MainContent from "./MainContent";
+import Modal from "../studentDashboard/Modal";
 
 function SchoolApp() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const callModal = () => {
+    setModalOpen(true);
+  };
   return (
     <Container>
-      <SideBar />
+      <SideBar callModalFun={() => callModal()} />
       <MainContent />
+      {modalOpen && <Modal setOpenModal={setModalOpen} />}
     </Container>
   );
 }
